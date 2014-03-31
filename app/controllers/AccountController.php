@@ -25,10 +25,33 @@ class AccountController extends BaseController{
 
 
 			} else {
-				die('success');
+				
+				$email 		= Input::get('email');
+				$username 	= Input::get('username');
+				$password 	= Input::get('password');
+
+				// Activation code
+				$code 		= str_random(60);
+
+				$user	= User::create(array(
+					'email'      => $email,
+					'username'   => $username,
+					'password' 	 => Hash::make($password),
+					'code'		 => $code,
+					'active'     => 0
+				));
+
+				if($user) {
+
+					// Send Email
+				
+					return  Redirect::route('home')
+							->with('global', 'Your account has been created! We have sent you an email to activate your account');
+
 			}
 
-
+		}
+	
 	}
 
 }
