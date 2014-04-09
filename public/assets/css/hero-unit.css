@@ -1,0 +1,19 @@
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height:  * 1.5;
+  color: ;
+  background-color: ;
+}
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  color: ;
+  letter-spacing: -1px;
+}
+.hero-unit li {
+  line-height:  * 1.5;
+}

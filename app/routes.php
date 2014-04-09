@@ -4,13 +4,44 @@ Route::get('/', array(
     'uses' => 'HomeController@home'
 ));
 
+Route::get('/user/{username}', array(
+	'as' => 'profile-user',
+	'uses' => 'ProfileController@user'
+	));
+
+
 /*
 | Authenticated group
 */
 Route::group(array('before' => 'auth'), function() { 
 
 	/*
-	| Signout
+	| CSRF protection group
+	*/
+
+	Route::group(array('before' => 'csrf'), function() {
+	
+	/*
+	| Change password (POST)
+	*/
+
+	Route::post('/account/change-password', array(
+		'as' => 'account-change-password-post',
+		'uses' => 'AccountController@postChangePassword'
+	));
+
+});
+	 /*
+	| Change password (GET)
+	*/
+
+	Route::get('/account/change-password', array(
+		'as' => 'account-change-password',
+		'uses' => 'AccountController@getChangePassword'
+	));
+
+	/*
+	| Signout (GET)
 	*/
 
 	Route::get('account/sign-out', array(
@@ -51,11 +82,38 @@ Route::group(array('before' => 'guest'), function() {
 
 		));
 
+		/*
+		| Forgot Password (POST)
+		*/
+
+		Route::post('/account/forgot-password', array(
+			'as' => 'account-forgot-password-post',
+			'uses' => 'AccountController@postForgotPassword'
+
+		));
+
 
 });
 
 
 //--------------------------------------------------------------------------------------------------------------------------
+	/*
+	| Forgot Password (GET)
+	*/
+	Route::get('/account/forgot-password', array(
+		'as' => 'account-forgot-password',
+		'uses' => 'AccountController@getForgotPassword'
+
+
+		));
+
+	Route::get('/account/recover/{code}', array(
+		'as' => 'account-recover',
+		'uses' => 'AccountController@getRecover'
+		));
+
+
+
 
 
 	/*
