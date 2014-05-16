@@ -5,10 +5,8 @@
 	"license": "MIT",
 	"require": {
 	
-		"laravel/framework": "4.1.*",
-		"leafo/lessphp": "0.4.0",
-		"barryvdh/laravel-ide-helper": "1.*",
-		"zizaco/lessy": "dev-master"
+		"laravel/framework": "4.1.*"
+
 	},
 	"autoload": {
 		"classmap": [
